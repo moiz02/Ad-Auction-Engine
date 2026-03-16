@@ -1,4 +1,4 @@
-# Ad Auction Engine
+<!-- # Ad Auction Engine
 
 This repository is a recruiter-facing sponsored-search auction simulator. The goal is to show clean system structure, ML workflow discipline, and a small interactive product surface without over-claiming production realism.
 
@@ -11,7 +11,7 @@ Phase 1 establishes the project foundation:
 - shared schemas and configuration
 - smoke tests and CI
 
-Business logic for data generation, retrieval, ranking, auction pricing, and CTR modeling will land in later phases.
+Business logic for data generation, retrieval, ranking, auction pricing, and CTR modeling will land in later phases. -->
 
 ## Project Structure
 
