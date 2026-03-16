@@ -1,0 +1,15 @@
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+
+.DS_Store
+
+data/generated/
+models/*.json
+models/*.joblib
+models/*.pkl
