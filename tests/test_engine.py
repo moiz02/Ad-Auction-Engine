@@ -76,11 +76,21 @@ def test_apply_gsp_pricing_uses_next_ad_rank_and_reserve_for_last() -> None:
 
     assert len(priced) == 3
 
-    expected_first = (ranked[1].ad_rank / (ranked[0].predicted_ctr * ranked[0].quality_score)) + 0.01
-    expected_second = (ranked[2].ad_rank / (ranked[1].predicted_ctr * ranked[1].quality_score)) + 0.01
+    expected_first = (
+        ranked[1].ad_rank / (ranked[0].predicted_ctr * ranked[0].quality_score)
+    ) + 0.01
+    expected_second = (
+        ranked[2].ad_rank / (ranked[1].predicted_ctr * ranked[1].quality_score)
+    ) + 0.01
 
-    assert priced[0].clearing_price == pytest.approx(min(expected_first, ranked[0].bid_price), rel=1e-6)
-    assert priced[1].clearing_price == pytest.approx(min(expected_second, ranked[1].bid_price), rel=1e-6)
+    assert priced[0].clearing_price == pytest.approx(
+        min(expected_first, ranked[0].bid_price),
+        rel=1e-6,
+    )
+    assert priced[1].clearing_price == pytest.approx(
+        min(expected_second, ranked[1].bid_price),
+        rel=1e-6,
+    )
     assert priced[2].clearing_price == pytest.approx(0.1)
 
 

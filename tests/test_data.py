@@ -55,7 +55,9 @@ def test_save_and_load_csv_round_trip(tmp_path: Path) -> None:
     loaded_interactions = load_interactions_csv(interactions_file)
 
     assert [item.model_dump() for item in ads] == [item.model_dump() for item in loaded_ads]
-    assert [item.model_dump() for item in interactions] == [item.model_dump() for item in loaded_interactions]
+    assert [item.model_dump() for item in interactions] == [
+        item.model_dump() for item in loaded_interactions
+    ]
 
 
 def test_generate_datasets_writes_expected_files(tmp_path: Path) -> None:

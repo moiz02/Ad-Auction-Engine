@@ -92,7 +92,11 @@ def test_train_and_save_then_load_and_predict(tmp_path: Path) -> None:
 
     retriever = CandidateRetriever.from_csv(str(ads_path))
     candidates = retriever.retrieve(query="fitness workout", top_k=5)
-    predictions = load_model_and_predict(str(model_path), candidates=candidates, query="fitness workout")
+    predictions = load_model_and_predict(
+        str(model_path),
+        candidates=candidates,
+        query="fitness workout",
+    )
 
     assert len(predictions) == len(candidates)
     assert all(0.0 <= value <= 1.0 for value in predictions)

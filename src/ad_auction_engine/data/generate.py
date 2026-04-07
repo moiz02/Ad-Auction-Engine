@@ -34,7 +34,11 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--interactions-count", type=int, default=settings.interactions_count)
     parser.add_argument("--seed", type=int, default=settings.random_seed)
     parser.add_argument("--ads-output", type=str, default=settings.ads_output_path)
-    parser.add_argument("--interactions-output", type=str, default=settings.interactions_output_path)
+    parser.add_argument(
+        "--interactions-output",
+        type=str,
+        default=settings.interactions_output_path,
+    )
     return parser
 
 

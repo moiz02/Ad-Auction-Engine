@@ -11,7 +11,9 @@ from ad_auction_engine.ml.trainer import train_and_save_ctr_model
 def _build_parser() -> argparse.ArgumentParser:
     settings = get_settings()
 
-    parser = argparse.ArgumentParser(description="Train baseline CTR model from interactions dataset")
+    parser = argparse.ArgumentParser(
+        description="Train baseline CTR model from interactions dataset"
+    )
     parser.add_argument("--interactions-path", type=str, default=settings.interactions_output_path)
     parser.add_argument("--model-output", type=str, default=settings.ctr_model_path)
     parser.add_argument("--test-size", type=float, default=settings.ctr_model_test_size)
