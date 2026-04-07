@@ -2,8 +2,8 @@
 
 import streamlit as st
 
+from ad_auction_engine.api_app import run_search_flow
 from ad_auction_engine.config import get_settings
-from api.main import run_search_flow
 
 settings = get_settings()
 

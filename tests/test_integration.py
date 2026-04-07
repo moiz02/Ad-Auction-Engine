@@ -2,11 +2,11 @@ from pathlib import Path
 
 from fastapi.testclient import TestClient
 
-import api.main as api_main
+import ad_auction_engine.api_app as api_main
+from ad_auction_engine.api_app import app, get_search_components
 from ad_auction_engine.data.interactions import generate_interactions, save_interactions_csv
 from ad_auction_engine.data.inventory import generate_ad_inventory, save_ad_inventory_csv
 from ad_auction_engine.ml.trainer import train_and_save_ctr_model
-from api.main import app, get_search_components
 
 
 def test_search_endpoint_runs_end_to_end(tmp_path: Path, monkeypatch) -> None:

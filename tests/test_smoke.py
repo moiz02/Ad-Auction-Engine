@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 
+from ad_auction_engine.api_app import app
 from ad_auction_engine.config import get_settings
-from api.main import app
 
 
 def test_health_endpoint_returns_ok() -> None:
