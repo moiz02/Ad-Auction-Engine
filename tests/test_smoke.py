@@ -18,3 +18,4 @@ def test_settings_defaults_are_loaded() -> None:
 
     assert settings.app_name == "Ad Auction Engine"
     assert settings.top_k_results == 3
+    assert settings.top_k_candidates == 20

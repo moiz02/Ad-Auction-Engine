@@ -52,3 +52,32 @@ class InteractionRecord(BaseModel):
     quality_score: float = Field(..., ge=1, le=10)
     historical_ctr: float = Field(..., ge=0, le=1)
     clicked: int = Field(..., ge=0, le=1)
+
+
+class CandidateRecord(BaseModel):
+    ad_id: str
+    advertiser_name: str
+    keywords: list[str] = Field(..., min_length=1)
+    bid_price: float = Field(..., ge=0)
+    quality_score: float = Field(..., ge=1, le=10)
+    historical_ctr: float = Field(..., ge=0, le=1)
+    keyword_match_type: Literal["exact", "broad"]
+    matched_keywords: list[str]
+    retrieval_score: float = Field(..., ge=0)
+
+
+class AuctionCandidate(BaseModel):
+    ad_id: str
+    advertiser_name: str
+    bid_price: float = Field(..., ge=0)
+    quality_score: float = Field(..., ge=1, le=10)
+    predicted_ctr: float = Field(..., ge=0, le=1)
+
+
+class RankedAd(BaseModel):
+    ad_id: str
+    advertiser_name: str
+    bid_price: float = Field(..., ge=0)
+    quality_score: float = Field(..., ge=1, le=10)
+    predicted_ctr: float = Field(..., ge=0, le=1)
+    ad_rank: float = Field(..., ge=0)

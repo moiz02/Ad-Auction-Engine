@@ -2,6 +2,7 @@
 
 import streamlit as st
 
+from api.main import run_search_flow
 from ad_auction_engine.config import get_settings
 
 settings = get_settings()
@@ -9,22 +10,35 @@ settings = get_settings()
 st.set_page_config(page_title=settings.app_name, layout="wide")
 
 st.title(settings.app_name)
-st.caption("Phase 1 scaffold: API and UI surfaces are live before engine logic is wired.")
+st.caption("Local demo for retrieval, CTR prediction, ranking, and GSP pricing.")
 
 query = st.text_input("Search query", placeholder="running shoes")
 user_id = st.text_input("User ID", placeholder="123")
 
-st.button("Run Search", disabled=True)
+run_search = st.button("Run Search")
 
-st.info(
-    "The interactive search flow will be connected in a later phase. "
-    "This UI exists now to prove the repository shape and app surfaces."
-)
+if run_search:
+    if not query.strip():
+        st.warning("Enter a query before running search.")
+    else:
+        response = run_search_flow(query.strip())
+        st.success(response.message)
 
-st.write(
-    {
-        "query": query,
-        "user_id": user_id,
-        "status": "pending_phase_2",
-    }
-)
+        if response.results:
+            rows = [
+                {
+                    "ad_id": row.ad_id,
+                    "advertiser_name": row.advertiser_name,
+                    "bid_price": row.bid_price,
+                    "predicted_ctr": row.predicted_ctr,
+                    "quality_score": row.quality_score,
+                    "ad_rank": row.ad_rank,
+                    "clearing_price": row.clearing_price,
+                }
+                for row in response.results
+            ]
+            st.dataframe(rows, use_container_width=True)
+        else:
+            st.info("No ads were returned for this query.")
+
+st.write({"query": query, "user_id": user_id})

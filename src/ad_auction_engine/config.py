@@ -19,6 +19,11 @@ class AppSettings(BaseSettings):
     ads_count: int = 3000
     interactions_count: int = 50000
     random_seed: int = 42
+    top_k_candidates: int = 20
+    retrieval_min_overlap: int = 1
+    ctr_model_path: str = "models/ctr_model.pkl"
+    ctr_model_test_size: float = 0.2
+    ctr_model_max_iter: int = 500
 
     model_config = SettingsConfigDict(
         env_prefix="AD_AUCTION_",
